@@ -1,21 +1,10 @@
 pipeline {
   agent {
-    docker {
-      image 'hip911/agent-image:latest'
+    node {
+      label 'master'
     }
-
   }
   stages {
-    stage('Create Packer AMI') {
-      steps {
-        withCredentials(bindings: [
-                      usernamePassword(credentialsId: 'awsCred', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_KEY')
-                    ]) {
-            sh 'packer build -debug -var aws_access_key=${AWS_KEY} -var aws_secret_key=${AWS_SECRET} packer/packer.json'
-          }
-
-        }
-      }
       stage('AWS Deployment') {
         steps {
           withCredentials(bindings: [
