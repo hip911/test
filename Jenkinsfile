@@ -7,10 +7,10 @@ pipeline {
   stages {
       stage('AWS Deployment') {
         steps {
-              sh 'rm -rf repository'
+              sh 'rm -rf tf-test'
               sh 'git clone https://github.com/hip911/tf-test.git'
               sh '''
-               cd repository
+               cd tf-test
                terraform init
                terraform apply -auto-approve -var access_key=${AWS_KEY} -var secret_key=${AWS_SECRET}
                git add terraform.tfstate
