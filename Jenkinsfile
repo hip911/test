@@ -1,7 +1,7 @@
 pipeline {
   agent {
-    docker {
-      image 'hip911/dind-jenkins-slave:latest'
+    node {
+      label 'master'
     }
   } 
     stages {
