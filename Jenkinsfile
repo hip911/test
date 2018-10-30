@@ -7,7 +7,7 @@ pipeline {
   stages {
       stage('AWS Deployment') {
         steps {
-          withCredentials([string(credentialsId: 'AWS_KEY', variable: 'AWS_KEY')]) {
+          withCredentials([string(credentialsId: 'AWS_KEY', variable: 'AWS_KEY'),string(credentialsId: 'AWS_SECRET', variable: 'AWS_SECRET')]) {
               sh 'rm -rf tf-test'
               sh 'git clone https://github.com/hip911/tf-test.git'
               sh '''
