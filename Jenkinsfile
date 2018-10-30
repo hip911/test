@@ -1,10 +1,10 @@
 pipeline {
   agent {
-    node {
-      label 'master'
+    docker {
+      image 'hip911/agent-image:latest'
     }
-  }
-  stages {
+  } 
+    stages {
       stage('AWS Deployment') {
         steps {
           withCredentials([string(credentialsId: 'AWS_KEY', variable: 'AWS_KEY'),string(credentialsId: 'AWS_SECRET', variable: 'AWS_SECRET')]) {
