@@ -14,7 +14,7 @@ pipeline {
               sh 'git clone https://github.com/hip911/tf-test.git'
               sh '''
                cd tf-test
-               /tmp/terraform init -var access_key=${AWS_KEY} -var secret_key=${AWS_SECRET}
+               export AWS_ACCESS_KEY_ID=${AWS_KEY} && export AWS_SECRET_ACCESS_KEY=${AWS_SECRET} && /tmp/terraform init -var access_key=${AWS_KEY} -var secret_key=${AWS_SECRET}
                /tmp/terraform apply -auto-approve -var access_key=${AWS_KEY} -var secret_key=${AWS_SECRET} -var 'key_name=terraformnew' -var 'public_key_path=/tmp/terraform.pub'
             '''
           }
